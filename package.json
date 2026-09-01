@@ -1,0 +1,23 @@
+{
+  "name": "my-harness",
+  "version": "0.1.0",
+  "description": "My Harness",
+  "type": "module",
+  "bin": {
+    "my-harness": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "core/",
+    "target/",
+    "AGENTS.md"
+  ],
+  "scripts": {
+    "test:codex": "cd .dev-sandbox && node ../bin/cli.js codex",
+    "test:claude": "cd .dev-sandbox && node ../bin/cli.js claude",
+    "test:cursor": "cd .dev-sandbox && node ../bin/cli.js cursor"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
