@@ -1,13 +1,16 @@
-import { copySkills, copyRules, copyFile, TARGET } from "./_shared.js";
+import { copySkills, copyRules, copyFile, TARGET, IS_GLOBAL } from "./_shared.js";
 
-console.log(`Installing Harness for Codex → ${TARGET}`);
+// Codex의 공식 전역 설정 경로는 .agents가 아니라 .codex다 (~/.codex/AGENTS.md)
+const dir = IS_GLOBAL ? ".codex" : ".agents";
+
+console.log(`Installing Harness for Codex → ${TARGET}${IS_GLOBAL ? " (global)" : ""}`);
 
 console.log("--------------------------------");
 
-copySkills(".agents/skills");
-copyRules(".agents/rules");
-await copyFile("core/workflow.md", ".agents/workflow.md");
-await copyFile("AGENTS.md", "AGENTS.md", { HARNESS_DIR: ".agents" });
+copySkills(`${dir}/skills`);
+copyRules(`${dir}/rules`);
+await copyFile("core/workflow.md", `${dir}/workflow.md`);
+await copyFile("AGENTS.md", IS_GLOBAL ? `${dir}/AGENTS.md` : "AGENTS.md", { HARNESS_DIR: dir });
 
 console.log("--------------------------------");
 

@@ -16,7 +16,7 @@ async function run(name) {
 
 if (!VALID_TARGETS.includes(target)) {
   // 타켓이 없으면 사용법 출력
-  console.log(`사용법: npx my-harness <${VALID_TARGETS.join('|')}>`);
+  console.log(`사용법: npx my-harness <${VALID_TARGETS.join('|')}> [--global]`);
   // 타켓이 있으면 1, 없으면 0 반환
   process.exit(target ? 1 : 0);
 } else {

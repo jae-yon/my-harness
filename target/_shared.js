@@ -1,6 +1,7 @@
 import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
+import { homedir } from "node:os";
 import { createInterface } from "node:readline/promises";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -8,7 +9,8 @@ const __dirname = dirname(__filename);
 
 export const PACKAGE = resolve(__dirname, "..");  // 하네스 패키지 루트
 export const CORE = join(PACKAGE, "core");        // 소스: core/
-export const TARGET = process.cwd();              // 현재 디렉토리
+export const IS_GLOBAL = process.argv.includes("--global");
+export const TARGET = IS_GLOBAL ? homedir() : process.cwd();  // --global이면 홈 디렉터리, 아니면 현재 디렉토리
 
 export function copySkills(destRel) {
   const dest = join(TARGET, destRel);

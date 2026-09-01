@@ -1,13 +1,13 @@
-import { copySkills, copyRules, copyFile, TARGET } from "./_shared.js";
+import { copySkills, copyRules, copyFile, TARGET, IS_GLOBAL } from "./_shared.js";
 
-console.log(`Installing Harness for Claude Code → ${TARGET}`);
+console.log(`Installing Harness for Claude Code → ${TARGET}${IS_GLOBAL ? " (global)" : ""}`);
 
 console.log("--------------------------------");
 
 copySkills(".claude/skills");
 copyRules(".claude/rules");
 await copyFile("core/workflow.md", ".claude/workflow.md");
-await copyFile("AGENTS.md", "CLAUDE.md", { HARNESS_DIR: ".claude" });
+await copyFile("AGENTS.md", IS_GLOBAL ? ".claude/CLAUDE.md" : "CLAUDE.md", { HARNESS_DIR: ".claude" });
 
 console.log("--------------------------------");
 

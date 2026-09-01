@@ -13,9 +13,9 @@
     "AGENTS.md"
   ],
   "scripts": {
-    "test:codex": "cd .dev-sandbox && node ../bin/cli.js codex",
-    "test:claude": "cd .dev-sandbox && node ../bin/cli.js claude",
-    "test:cursor": "cd .dev-sandbox && node ../bin/cli.js cursor"
+    "test:codex": "cd .sandbox && node ../bin/cli.js codex",
+    "test:claude": "cd .sandbox && node ../bin/cli.js claude",
+    "test:cursor": "cd .sandbox && node ../bin/cli.js cursor"
   },
   "engines": {
     "node": ">=18"
