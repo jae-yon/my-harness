@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { createInterface } from "node:readline/promises";
@@ -24,7 +24,7 @@ export function copyRules(destRel) {
   console.log(`  rules   -> ${destRel}`);
 }
 
-export async function copyFile(srcRel, destRel) {
+export async function copyFile(srcRel, destRel, vars = {}) {
   const dest = join(TARGET, destRel);
   if (existsSync(dest)) {
     if (!process.stdin.isTTY) {
@@ -40,7 +40,16 @@ export async function copyFile(srcRel, destRel) {
     }
   }
   mkdirSync(dirname(dest), { recursive: true });
-  cpSync(join(PACKAGE, srcRel), dest);
+  const src = join(PACKAGE, srcRel);
+  if (Object.keys(vars).length === 0) {
+    cpSync(src, dest);
+  } else {
+    let content = readFileSync(src, "utf8");
+    for (const [key, value] of Object.entries(vars)) {
+      content = content.replaceAll(`{{${key}}}`, value);
+    }
+    writeFileSync(dest, content);
+  }
   console.log(`  ${srcRel} -> ${destRel}`);
 }
 
