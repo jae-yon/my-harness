@@ -1,14 +1,19 @@
-# Workflow
+## Workflow
 
-모든 기능/수정 작업은 다음 순서를 따른다:
+Every feature/fix task follows these steps:
 
 ```
-plan -> test -> implement -> review -> verify -> remember
+Plan → Test → Implement → Review → Verify → Remember
 ```
 
-1. **plan** — 코드를 쓰기 전 계획을 세운다. (skills/plan)
-2. **test** — 구현 전에 실패하는 테스트를 먼저 작성한다. (skills/tdd-workflow)
-3. **implement** — 테스트를 통과하는 최소 코드를 작성한다.
-4. **review** — 새 관점에서 작업을 점검한다. (skills/code-review)
-5. **verify** — build, lint, types, tests를 모두 확인한다.
-6. **remember** — 긴 세션 종료 시 요약을 남긴다. (skills/save-session)
+1. **Plan** — Set up a plan before writing code (skills/plan)
+
+2. **Test** — Write a failing test first, before implementing (skills/tdd-workflow)
+
+3. **Implement** — Write the minimum code that passes the test
+
+4. **Review** — Check the work from a fresh perspective (skills/code-review)
+
+5. **Verify** — Confirm build, lint, types, and tests all pass
+
+6. **Remember** — Summarize when a long session ends (skills/save-session)

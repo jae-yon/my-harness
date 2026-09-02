@@ -1,26 +1,31 @@
 ---
 name: save-session
-description: 긴 세션을 끝낼 때 핵심을 요약해 남긴다.
+description: Summarize the key points and save them when a long session ends.
 ---
 
 # Save Session
 
-## 절차
-1. 이번 세션에서 **한 일**을 3~5줄로.
-2. **내린 결정**과 이유.
-3. **다음 단계 / 미해결 이슈**.
-4. `memory/sessions/YYYY-MM-DD-<주제>.md` 로 저장 (필요 시 폴더 생성).
+### When to use
+- When the session has grown long and context is about to be summarized, or the session is about to end.
+- When there's follow-up work or unresolved issues for the next session to pick up.
 
-## 형식
+### Procedure
+1. Summarize what you **did** this session in 3-5 lines.
+2. Note the **decisions** made and why.
+3. Note **next steps / open issues**.
+4. Save to `memory/sessions/YYYY-MM-DD-<topic>.md`, relative to the project root (create the folder if it doesn't exist).
+5. `memory/` is personal working notes, not a shared team artifact — recommend adding it to `.gitignore`.
+
+### Format
 ```
-# <날짜> — <주제>
+# <date> — <topic>
 
-## 한 일
+## Did
 - ...
 
-## 결정
+## Decisions
 - ...
 
-## 다음 단계
+## Next steps
 - [ ] ...
 ```

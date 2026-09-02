@@ -1,19 +1,21 @@
 ---
 name: code-review
-description: 방금 작성한 코드를 새 관점(fresh context)에서 점검한다.
+description: Review just-written code from a fresh perspective before committing/PR. Delegates to the code-reviewer subagent when available.
 ---
 
 # Code Review
 
-## 언제 쓰나
-- 구현 직후, 커밋/PR 전에.
+### When to use
+- Right after implementation, before commit/PR.
 
-## 체크리스트
-- **정확성** — 요구사항 만족? 엣지 케이스?
-- **회귀** — 기존 동작을 깨뜨리지 않았는가?
-- **테스트** — 새 로직에 테스트가 있는가? 빠진 케이스?
-- **보안** — 입력 검증, 비밀값 노출, 인젝션 위험?
-- **가독성** — 6개월 뒤의 내가 이해하는가?
+### Procedure
+1. Invoke the `code-reviewer` subagent when the platform supports it — prefer Opus 5, fall back to Opus 4.8, otherwise inherit the current session's model — passing it the changed files/diff and the original requirement.
+2. If subagents aren't available in the current environment, review the code yourself using the checklist below — consciously set aside the fact that you just wrote it.
+3. Act on the findings: fix critical/high-severity issues before considering the work done; note anything deliberately deferred.
 
-## 산출물
-- 문제를 우선순위(critical/minor)로 정리하고 각각 수정 또는 사유를 남긴다.
+### Checklist (fallback, if no subagent)
+- **Correctness** — meets requirements? edge cases?
+- **Regression** — does it break existing behavior?
+- **Tests** — does new logic have tests? missing cases?
+- **Security** — input validation, secret exposure, injection risk?
+- **Readability** — will you understand this in 6 months?

@@ -1,16 +1,20 @@
 ---
 name: plan
-description: 코드를 쓰기 전에 구현 계획을 세운다. 새 기능, 큰 변경, 불확실한 작업에 사용.
+description: Set up an implementation plan before writing code. Use for new features, large changes, or uncertain tasks.
 ---
 
 # Plan
 
-## 언제 쓰나
-- 새 기능 시작, 여러 파일에 걸친 변경, 접근이 불확실할 때.
+### When to use
+- Starting a new feature, changes spanning multiple files, or when the approach is uncertain.
 
-## 절차
-1. **목표 정리** — 무엇을, 왜 만드는지 한두 문장.
-2. **현재 상태 파악** — 관련 코드/제약 조사. 추측하지 않는다.
-3. **접근안 제시** — 방식 1~2개와 트레이드오프.
-4. **작업 분해** — 테스트 가능한 단위로.
-5. **CONFIRM** — 계획을 확인받은 뒤 구현으로.
+### Procedure
+1. **Clarify the goal** — one or two sentences on what and why.
+2. **Understand the current state** — investigate relevant code/constraints. Don't guess.
+3. **Propose an approach** — 1-2 options with tradeoffs.
+4. **Break down the work** — split into testable units, and state how each step will be verified:
+   ```
+   1. [Step] → Verify: [how to confirm]
+   2. [Step] → Verify: [how to confirm]
+   ```
+5. **CONFIRM** — get the plan confirmed before moving to implementation.
