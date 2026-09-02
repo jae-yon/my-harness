@@ -12,18 +12,27 @@ export const CORE = join(PACKAGE, "core");        // 소스: core/
 export const IS_GLOBAL = process.argv.includes("--global");
 export const TARGET = IS_GLOBAL ? homedir() : process.cwd();  // --global이면 홈 디렉터리, 아니면 현재 디렉토리
 
+const excludeKrFiles = (src) => !/\.kr\.md$/i.test(src);
+
 export function copySkills(destRel) {
   const dest = join(TARGET, destRel);
   mkdirSync(dest, { recursive: true });
-  cpSync(join(CORE, "skills"), dest, { recursive: true });
+  cpSync(join(CORE, "skills"), dest, { recursive: true, filter: excludeKrFiles });
   console.log(`  skills  -> ${destRel}`);
 }
 
 export function copyRules(destRel) {
   const dest = join(TARGET, destRel);
   mkdirSync(dest, { recursive: true });
-  cpSync(join(CORE, "rules"), dest, { recursive: true });
+  cpSync(join(CORE, "rules"), dest, { recursive: true, filter: excludeKrFiles });
   console.log(`  rules   -> ${destRel}`);
+}
+
+export function copyAgents(destRel) {
+  const dest = join(TARGET, destRel);
+  mkdirSync(dest, { recursive: true });
+  cpSync(join(CORE, "agents"), dest, { recursive: true, filter: excludeKrFiles });
+  console.log(`  agents  -> ${destRel}`);
 }
 
 export async function copyFile(srcRel, destRel, vars = {}) {
