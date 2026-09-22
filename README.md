@@ -6,6 +6,7 @@
 
 - [affaan-m/ECC](https://github.com/affaan-m/ECC)
 - [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+- [emilkowalski/skills](https://github.com/emilkowalski/skills), [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill), [pbakaus/impeccable](https://github.com/pbakaus/impeccable) — `design-taste`/`ui-consistency-audit` 스킬의 아이디어 출처 (CLI·이미지 생성·GSAP 등 무거운 도구 체인은 제외하고 규칙만 이식)
 
 ## 🪄 Install
 
@@ -16,7 +17,8 @@ npx github:jae-yon/my-harness <codex|claude|cursor>
 # 전역 — 홈 디렉터리에 설치, 모든 프로젝트에 자동 적용
 npx github:jae-yon/my-harness <codex|claude|cursor> --global
 ```
-
+> [!NOTE]
+> 이미 설치된 대상이 있으면 대화형 터미널에서는 덮어쓸지 물어보고(Y/N), 비대화형 환경에서는 자동으로 건너뛴다.
 
 | 플랫폼         | 로컬 설치 위치                                                  | 전역 설치 위치                                                                    |
 | ----------- | --------------------------------------------------------- | --------------------------------------------------------------------------- |
@@ -24,13 +26,9 @@ npx github:jae-yon/my-harness <codex|claude|cursor> --global
 | Claude Code | `.claude/{skills,rules,agents,workflow.md}` + `CLAUDE.md` | `~/.claude/{skills,rules,agents,workflow.md,CLAUDE.md}`                     |
 | Cursor      | `.cursor/{skills,rules,agents,workflow.md}` + `AGENTS.md` | `~/.cursor/{skills,rules,agents,workflow.md}` + `~/.cursor/rules/AGENTS.md` |
 
-
-> [!NOTE]
-> 이미 설치된 대상이 있으면 대화형 터미널에서는 덮어쓸지 물어보고(Y/N), 비대화형 환경에서는 자동으로 건너뛴다.
-
 > [!WARNING]
-> Cursor의 전역 규칙은 공식적으로 `.mdc` 확장자를 기대한다. 지금은 `.md`로 설치되므로 실제 인식 여부는 별도 확인이 필요하다.
-> `agents/`(서브에이전트 정의)는 Claude Code의 `.claude/agents/*.md`가 실제 네이티브 컨벤션과 일치하여 그대로 서브에이전트로 동작하지만, Codex와 Cursor는 동일한 네이티브 지원 여부가 아직 미확인 상태이다. (설치 시 안내 문구 출력)
+> - Cursor의 전역 규칙은 공식적으로 `.mdc` 확장자를 기대한다. 지금은 `.md`로 설치되므로 실제 인식 여부는 별도 확인이 필요하다.
+> - `agents/`(서브에이전트 정의)는 Claude Code의 `.claude/agents/*.md`가 실제 네이티브 컨벤션과 일치하여 그대로 서브에이전트로 동작하지만, Codex와 Cursor는 동일한 네이티브 지원 여부가 아직 미확인 상태이다. (설치 시 안내 문구 출력)
 
 
 
@@ -65,6 +63,8 @@ target/{platform}.js
 - `tdd-workflow` — RED → GREEN → REFACTOR 강제. RED는 가능하면 `code-tester` 서브에이전트에 위임
 - `code-review` — 구현 직후 점검. 가능하면 `code-reviewer` 서브에이전트에 위임(모델 우선순위: Opus 5 → Opus 4.8 → 세션 상속), 서브에이전트 불가 환경용 대체 체크리스트 포함
 - `save-session` — 긴 세션 종료 시 요약을 `memory/sessions/`에 저장 (프로젝트 루트 기준, `.gitignore` 권장)
+- `design-taste` — 프론트엔드 UI 작성/스타일링 시 사용. 완전히 새로운 페이지/화면이면 브라우저/WebSearch로 Mobbin·Dribbble 레퍼런스부터 조회하고, 새 값을 지어내기 전에 기존 디자인 토큰(Tailwind/shadcn)을 재사용하도록 하며, 간격·타이포그래피·색상·radius·모션 기본 규칙을 적용 (workflow 다이어그램과 무관한 상황별 스킬)
+- `ui-consistency-audit` — 컴포넌트를 하나씩 늘려오며 쌓인 디자인 드리프트를 점검. 파일별이 아니라 패턴별로 보고하고, 대량 수정 전 확인을 받음 (workflow 다이어그램과 무관한 상황별 스킬)
 
 
 

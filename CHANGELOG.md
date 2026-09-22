@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-09-22
+
+### Added
+- `core/skills/design-taste`에 레퍼런스 조회 단계 추가 — 완전히 새로운 페이지/화면을 만들 때만(기존 컴포넌트 수정 시 생략), 설계 전에 같은 유형 화면 레퍼런스 2~3개를 조회
+
+### Changed
+- 위 레퍼런스 조회 단계의 조회 방식을 Mobbin MCP 우선 → 직접 조회(브라우저/WebSearch)로 단순화. Mobbin MCP는 무료 플랜에 없고 Pro 이상 유료 플랜부터 포함되는 기능으로 확인되어(`mobbin.com/pricing.md`), MCP 연결을 전제하지 않는 방식으로 변경
+- 레퍼런스 사이트를 Mobbin 단독 → Mobbin(실제 출시된 프로덕트 화면·플로우) + Dribbble(비주얼·컴포넌트 단위 컨셉) 2곳으로 확장
+- `core/skills/design-taste` — 프론트엔드(React+Tailwind+shadcn) UI 작성/스타일링 시 사용하는 상황별 스킬. 새 간격·색상·radius·폰트 값을 지어내기 전에 기존 토큰(Tailwind config, shadcn 컴포넌트)을 먼저 찾아 재사용하게 하고, 간격/타이포그래피/색상/radius·shadow/모션/밀도 6개 기본 규칙 체크리스트 포함
+- `core/skills/ui-consistency-audit` — 컴포넌트를 하나씩 임기응변으로 늘려오며 쌓인 디자인 드리프트를 점검하는 상황별 스킬. 범위 확정 → 기준(토큰) 확립 → 드리프트 스캔 → 패턴별(파일별 아님) 보고 → 우선순위별 수정안 제시 및 대량 적용 전 확인 순서로 진행
+- 두 스킬 모두 `emilkowalski/skills`(`apple-design`, `animate` 등), `leonxlnx/taste-skill`(`redesign-existing-projects`), `pbakaus/impeccable`(`audit`/`critique` 안티패턴 목록)을 조사해 핵심 규칙만 추려 이식 — CLI 설치, 이미지 생성, GSAP 코드 생성 등 하네스의 "가벼운 지시문 파일" 스타일에 안 맞는 무거운 도구 체인은 제외
+- `README.md`: Skills 목록에 두 스킬 항목 추가(workflow 다이어그램과 무관한 상황별 스킬임을 명시), `## 📜 Reference`에 위 세 저장소 출처 추가
+
+### Verified
+- `npm run test:claude`로 `.sandbox` 설치 확인 — `design-taste`, `ui-consistency-audit` 모두 `.claude/skills/`에 정상 설치되고 `.KR.md`는 기존 규칙대로 제외됨
+
 ## 2026-09-02
 
 ### Added
@@ -22,6 +38,8 @@
 - `coding-style.md`에 네이밍·들여쓰기·중괄호·줄 길이·주석·코드 구조·포매팅 7개 섹션 콘텐츠 채움 (DB 스키마 snake_case 규칙 포함)
 - `code-review` 스킬이 `code-reviewer` 서브에이전트에 위임하도록 변경 (모델 우선순위 Opus 5 → Opus 4.8 → 세션 상속을, 실제로 읽히는 시점인 스킬 절차에 명시)
 - `tdd-workflow` 스킬의 RED 단계가 `code-tester` 서브에이전트에 위임하도록 변경
+- `README.md`에 설치 파이프라인 6단계 해설("동작 흐름")과 AI 런타임 사용 흐름(Mermaid 플로우차트: Plan→Test→Implement→Review→Verify→Remember, 서브에이전트 가능/불가 분기) 추가
+- `README.md`를 GitHub 알림 문법(`> [!NOTE]`, `> [!WARNING]`)과 이모지 섹션 제목으로 재구성, `## 📜 Reference` 섹션 신설(ECC + `multica-ai/andrej-karpathy-skills`)
 
 ### Fixed
 - `bin/cli.js`: Windows에서 동적 `import()`가 `file://` URL을 요구해 `ERR_UNSUPPORTED_ESM_URL_SCHEME`로 죽던 문제 → `pathToFileURL()`로 해결
