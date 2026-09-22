@@ -3,6 +3,12 @@
 ## 2026-09-22
 
 ### Added
+- 반응형(모바일/태블릿/데스크탑) 규칙 보강 — 기존에는 `design-reviewer` 체크리스트에 "주요 breakpoint에서 자연스러운가" 한 줄만 있고 `design-taste`/`ui-consistency-audit`에는 아예 없던 공백을 메움
+  - `design-taste` 기본 규칙에 `Responsive` 항목 추가: 프로젝트 breakpoint 스케일 재사용, 모바일 퍼스트 설계, 반응 안 하는 고정폭 지양, 모바일 터치 타겟 ≥44px
+  - `ui-consistency-audit` 드리프트 스캔 항목에 "일관되지 않은 반응형 breakpoint"(커스텀 미디어쿼리 혼용, 모바일 퍼스트 기본 스타일 누락, 반응 안 하는 고정폭) 추가
+  - `design-reviewer` 절차에 모바일(~375px)/태블릿(~768px)/데스크탑(~1280px) 3폭 확인 단계 추가 — 브라우저/프리뷰 도구가 있으면 실제 리사이즈, 없으면 반응형 클래스를 정적으로 읽고 추론하되 어느 방식인지 결과에 명시(AGENTS §5, "검증 불가 시 명시" 원칙 적용). 체크리스트의 반응형 항목도 구체화
+- `core/agents/design-reviewer` 신설 — `code-reviewer`와 같은 패턴(체크리스트, 흔한 거짓양성 스킵 리스트, Approve/Needs changes/Blocked 판정, 모델 우선순위 Opus 5 → Opus 4.8 → 세션 상속)으로, 웹디자이너·웹퍼블리셔 관점에서 UI/프론트엔드 변경을 검토. 체크리스트: 토큰 일관성, 비주얼 테이스트(`design-taste`의 기본 규칙 기준), 마크업 시맨틱, 접근성, 반응형
+- `design-taste`(구현 후 점검 단계) / `ui-consistency-audit`(드리프트 스캔 단계)가 플랫폼이 지원하면 `design-reviewer` 서브에이전트에 위임하도록 절차 한 줄씩 추가 — `code-review`/`tdd-workflow` 스킬이 각각 `code-reviewer`/`code-tester`에 위임하는 기존 패턴과 동일하게 연결
 - `core/skills/design-taste`에 레퍼런스 조회 단계 추가 — 완전히 새로운 페이지/화면을 만들 때만(기존 컴포넌트 수정 시 생략), 설계 전에 같은 유형 화면 레퍼런스 2~3개를 조회
 
 ### Changed

@@ -63,7 +63,7 @@ target/{platform}.js
 - `tdd-workflow` — RED → GREEN → REFACTOR 강제. RED는 가능하면 `code-tester` 서브에이전트에 위임
 - `code-review` — 구현 직후 점검. 가능하면 `code-reviewer` 서브에이전트에 위임(모델 우선순위: Opus 5 → Opus 4.8 → 세션 상속), 서브에이전트 불가 환경용 대체 체크리스트 포함
 - `save-session` — 긴 세션 종료 시 요약을 `memory/sessions/`에 저장 (프로젝트 루트 기준, `.gitignore` 권장)
-- `design-taste` — 프론트엔드 UI 작성/스타일링 시 사용. 완전히 새로운 페이지/화면이면 브라우저/WebSearch로 Mobbin·Dribbble 레퍼런스부터 조회하고, 새 값을 지어내기 전에 기존 디자인 토큰(Tailwind/shadcn)을 재사용하도록 하며, 간격·타이포그래피·색상·radius·모션 기본 규칙을 적용 (workflow 다이어그램과 무관한 상황별 스킬)
+- `design-taste` — 프론트엔드 UI 작성/스타일링 시 사용. 완전히 새로운 페이지/화면이면 브라우저/WebSearch로 Mobbin·Dribbble 레퍼런스부터 조회하고, 새 값을 지어내기 전에 기존 디자인 토큰(Tailwind/shadcn)을 재사용하도록 하며, 간격·타이포그래피·색상·radius·모션·반응형(모바일 퍼스트, breakpoint 스케일 재사용) 기본 규칙을 적용 (workflow 다이어그램과 무관한 상황별 스킬)
 - `ui-consistency-audit` — 컴포넌트를 하나씩 늘려오며 쌓인 디자인 드리프트를 점검. 파일별이 아니라 패턴별로 보고하고, 대량 수정 전 확인을 받음 (workflow 다이어그램과 무관한 상황별 스킬)
 
 
@@ -74,6 +74,7 @@ Claude Code의 `.claude/agents/*.md` 컨벤션. 스킬보다 무거운 로직(�
 
 - `code-reviewer` — 코드를 작성한 기억이 없는 새 컨텍스트에서 리뷰. Approve/Needs changes/Blocked로 판정
 - `code-tester` — 구현을 보지 않고 스펙·인터페이스만으로 실패하는 테스트를 작성 (구현에 맞춰 테스트를 짜맞추는 편향 방지)
+- `design-reviewer` — UI/프론트엔드 변경을 웹디자이너·웹퍼블리셔 관점에서 리뷰(토큰 일관성, 비주얼 테이스트, 마크업 시맨틱, 접근성, 모바일/태블릿/데스크탑 반응형 — 브라우저 도구 있으면 실제 리사이즈, 없으면 정적 추론 후 명시). `design-taste`/`ui-consistency-audit` 스킬이 가능하면 여기로 위임. Approve/Needs changes/Blocked로 판정
 
 
 
